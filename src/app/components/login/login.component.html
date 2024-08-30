@@ -1,0 +1,24 @@
+<div
+  class="m-0 d-flex justify-content-center align-items-center container_h"
+>
+  <div class="row px-4 py-5 rounded-4 box_bg container_max">
+    <h2 class="mb-4 d-flex justify-content-center fw-bolder">Login</h2>
+
+    <form>
+      <div class="mb-3">
+        <label for="iptEmail" class="form-label">E-mail</label>
+        <input type="email" class="form-control ipt_styled" id="iptEmail" />
+      </div>
+      <div class="mb-3">
+        <label for="iptSenha" class="form-label">Senha</label>
+        <input type="password" class="form-control ipt_styled" id="iptSenha" />
+      </div>
+
+      <button type="button" class="btn btn-dark w-100" [routerLink]="['/clientes']">Entrar</button>
+    </form>
+
+    <a class="d-flex justify-content-center mt-3 link_styled" [routerLink]="['/cadastro']">
+      Click aqui para criar uma conta!
+    </a>
+  </div>
+</div>
