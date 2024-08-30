@@ -1,0 +1,26 @@
+.container_h {
+  min-height: 100vh;
+  background: #EBEBEB;
+}
+
+.container_max {
+  width: 400px;
+}
+
+.box_bg {
+  background: #fff;
+}
+
+.ipt_styled {
+  background-color: #F0F0F0;
+}
+
+.link_styled {
+  color: #898989;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
