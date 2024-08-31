@@ -1,3 +1,46 @@
-<p>
-  cobranca works!
-</p>
+<div class="m-0 d-flex justify-content-center align-items-center container_h">
+  <div class="container px-5 py-5 rounded-4 box_bg">
+    <div class="d-flex mb-3 justify-content-between align-items-center">
+      <h2 class="m-0">Cobranças/<b>Cliente teste</b></h2>
+      <div class="d-flex gap-2">
+        <button class="btn btn-dark px-4">Cadastrar</button>
+        <button class="btn btn-danger px-4" [routerLink]="['/clientes']">Cancelar</button>
+      </div>
+    </div>
+
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col" class="w-50">Descrição</th>
+          <th scope="col" class="text-center w-min">Valor</th>
+          <th scope="col" class="text-center w-min">Vencimento</th>
+          <th scope="col" class="w-25"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="align-middle" *ngFor="let cobranca of cobrancasUser">
+          <td>{{ cobranca.descricao }}</td>
+          <td class="text-center" class="text-center">
+            <span>
+              {{ cobranca.valor }}
+            </span>
+          </td>
+          <td class="text-center">
+            <span>
+              {{ cobranca.vencimento }}
+            </span>
+          </td>
+          <td class="text-end">
+            <button class="btn btn-primary btn-sm me-2">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-danger btn-sm me-2">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

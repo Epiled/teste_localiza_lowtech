@@ -1,22 +1,12 @@
-<div
-  class="m-0 d-flex justify-content-center align-items-center container_h"
->
+<div class="m-0 d-flex justify-content-center align-items-center container_h">
   <div class="row px-4 py-5 rounded-4 box_bg container_max">
-    <h2 class="mb-4 d-flex justify-content-center fw-bolder">Cadastro</h2>
+
+    <app-titulo [titulo]="'Cadastro'"></app-titulo>
 
     <form>
-      <div class="mb-3">
-        <label for="iptNome" class="form-label">Nome</label>
-        <input type="text" class="form-control ipt_styled" id="iptNome" />
-      </div>
-      <div class="mb-3">
-        <label for="iptEmail" class="form-label">E-mail</label>
-        <input type="email" class="form-control ipt_styled" id="iptEmail" />
-      </div>
-      <div class="mb-3">
-        <label for="iptSenha" class="form-label">Senha</label>
-        <input type="password" class="form-control ipt_styled" id="iptSenha" />
-      </div>
+      <app-input [label]="'Nome'" [for]="'Nome'" [type]="'text'"></app-input>
+      <app-input [label]="'E-mail'" [for]="'Email'" [type]="'email'"></app-input>
+      <app-input [label]="'Senha'" [for]="'Senha'" [type]="'password'"></app-input>
 
       <button type="button" class="btn btn-dark w-100">Criar Conta</button>
     </form>
@@ -24,5 +14,6 @@
     <a class="justify-content-center text-center mt-3 link_styled" [routerLink]="['/login']">
       Cancelar
     </a>
+    
   </div>
 </div>

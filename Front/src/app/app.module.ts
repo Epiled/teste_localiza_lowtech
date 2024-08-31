@@ -12,6 +12,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { TituloComponent } from './shared/titulo/titulo.component';
+import { InputComponent } from './shared/input/input.component';
+import { CobrancaComponent } from './components/cobranca/cobranca.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { ClientesComponent } from './components/clientes/clientes.component';
     LoginComponent,
     CadastroComponent,
     ClientesComponent,
-    CadastroComponent,
+    CobrancaComponent,
+    TituloComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
