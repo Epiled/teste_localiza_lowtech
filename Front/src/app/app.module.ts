@@ -15,6 +15,10 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
 import { InputComponent } from './shared/input/input.component';
 import { CobrancaComponent } from './components/cobranca/cobranca.component';
+import { UsersService } from 'src/app/service/users.service';
+import { ClientesService } from 'src/app/service/clientes.service';
+import { CobrancasService } from 'src/app/service/cobrancas.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,7 @@ import { CobrancaComponent } from './components/cobranca/cobranca.component';
     ClientesComponent,
     CobrancaComponent,
     TituloComponent,
-    InputComponent
+    InputComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +36,14 @@ import { CobrancaComponent } from './components/cobranca/cobranca.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    UsersService,
+    ClientesService,
+    CobrancasService
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

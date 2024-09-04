@@ -1,17 +1,38 @@
-<div
-  class="m-0 d-flex justify-content-center align-items-center container_h"
->
+<div class="m-0 d-flex justify-content-center align-items-center container_h">
   <div class="row px-4 py-5 rounded-4 box_bg container_max">
     <app-titulo [titulo]="'Login'"></app-titulo>
 
     <form>
-      <app-input [label]="'E-mail'" [for]="'Email'" [type]="'email'"></app-input>
-      <app-input [label]="'Senha'" [for]="'Senha'" [type]="'password'"></app-input>
+      <app-input
+        [label]="'E-mail'"
+        [for]="'Email'"
+        [type]="'email'"
+        [(ngModel)]="email"
+        name="email"
+      >
+      </app-input>
+      <app-input
+        [label]="'Senha'"
+        [for]="'Senha'"
+        [type]="'password'"
+        [(ngModel)]="senha"
+        name="senha"
+      >
+      </app-input>
 
-      <button type="button" class="btn btn-dark w-100" [routerLink]="['/clientes']">Entrar</button>
+      <button
+        class="btn btn-dark w-100"
+        type="button"
+        (click)="checkUser()"
+        >
+        Entrar
+      </button>
     </form>
 
-    <a class="d-flex justify-content-center mt-3 link_styled" [routerLink]="['/cadastro']">
+    <a
+      class="d-flex justify-content-center mt-3 link_styled"
+      [routerLink]="['/cadastro']"
+      >
       Click aqui para criar uma conta!
     </a>
   </div>

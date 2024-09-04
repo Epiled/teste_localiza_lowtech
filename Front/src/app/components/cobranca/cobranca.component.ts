@@ -1,57 +1,90 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Cobranca } from 'src/app/models/Cobranca';
+import { CobrancasService } from 'src/app/service/cobrancas.service';
+import { checkPrazo } from 'src/app/utils/date-utils';
 
 @Component({
   selector: 'app-cobranca',
   templateUrl: './cobranca.component.html',
-  styleUrls: ['./cobranca.component.scss']
+  styleUrls: ['./cobranca.component.scss'],
 })
-
 export class CobrancaComponent implements OnInit {
-  public cobrancas = [
-    {
-      idUser: 1,
-      id: 1,
-      descricao: 'Cliente teste',
-      valor: "1.800,00",
-      vencimento: "25/06/2024",
-    },
-    {
-      idUser: 1,
-      id: 2,
-      descricao: 'Cliente teste 2',
-      valor: "2.500,00",
-      vencimento: "12/08/2025",
-    },
-    {
-      idUser: 2,
-      id: 3,
-      descricao: 'Cliente teste 3',
-      valor: "3.000,00",
-      vencimento: "25/06/2024",
-    }
-  ];
+  modalRef?: BsModalRef; // Referência ao modal
+  config = {
+    keyboard: true
+  };
 
-  public cobrancasUser : any[] = [];
-  public id?: number;
+  public cobrancasUser: Cobranca[] = [];
+  public id: string = "";
+  public userId: string = "";
+  checkPrazo = checkPrazo
 
 
-  constructor(private route: ActivatedRoute) { }
+  cobrancaSelected: Cobranca = {
+    "id": "",
+    "idCliente": "",
+    "descricao": "",
+    "valor": "",
+    "dataVencimento": "",
+    "pago": false,
+  };
+
+  constructor(
+    private route: ActivatedRoute,
+    private service: CobrancasService,
+    private modalService: BsModalService
+  ) {}
 
   ngOnInit() {
     // Recuperando o ID dos queryParams
-    this.route.queryParams.subscribe(params => {
-      this.id = +params['id']; // o "+" converte a string para número
+    this.route.queryParams.subscribe((params) => {
+      this.id = params['idCliente'];
+      this.userId = params['userId'];
+
       if (this.id) {
-        this.filtrarPorId(this.id);
+        this.service.getCobrancasByClient(this.id).subscribe((cobrancas) => {
+          this.cobrancasUser = cobrancas;
+        });
       } else {
         console.log('Nenhum ID encontrado nos queryParams.');
       }
     });
   }
 
-  public filtrarPorId(id: number) {
-    this.cobrancasUser = this.cobrancas.filter(cobranca => cobranca.idUser === id)
+  openModal(template: TemplateRef<void>, cobranca: Cobranca): void {
+    this.modalRef = this.modalService.show(template, this.config);
+    this.cobrancaSelected = { ...cobranca };
   }
 
+  criarCobranca() {
+
+  }
+
+  editarCobranca() {
+    this.service.putCobranca(this.cobrancaSelected).subscribe(updatedCliente => {
+      const index = this.cobrancasUser.findIndex(c => c.id === updatedCliente.id);
+      if (index !== -1)
+        this.cobrancasUser[index] = updatedCliente;
+    });
+  }
+
+  cancelEdit(clienteId: string): void {
+    const original = this.cobrancasUser.find(cliente => cliente.id === clienteId);
+
+    if(original)
+    this.cobrancaSelected = { ...original };
+  }
+
+  excluirCobranca(idCobranca: string) {
+    if (idCobranca) {
+      this.service.deleteCobranca(idCobranca).subscribe(() => {
+        // Remove a cobrança da lista local
+        this.cobrancasUser = this.cobrancasUser.filter(c => c.id !== idCobranca);
+      });
+    } else {
+      console.log('Nenhuma cobrança com esse ID foi encontrada');
+    }
+  }
 }

@@ -1,4 +1,12 @@
 <div class="mb-3">
-  <label for="ipt{{for}}" class="form-label">{{label}}</label>
-  <input type="{{type}}" class="form-control ipt_styled" id="ipt{{for}}" />
+  <label for="ipt{{ for }}" class="form-label">
+    {{ label }}
+  </label>
+  <input
+    id="ipt{{ for }}"
+    class="form-control ipt_styled"
+    type="{{ type }}"
+    [(ngModel)]="objeto"
+    (ngModelChange)="onInputChange($event)"
+  />
 </div>

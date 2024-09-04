@@ -1,19 +1,47 @@
 <div class="m-0 d-flex justify-content-center align-items-center container_h">
   <div class="row px-4 py-5 rounded-4 box_bg container_max">
-
     <app-titulo [titulo]="'Cadastro'"></app-titulo>
 
     <form>
-      <app-input [label]="'Nome'" [for]="'Nome'" [type]="'text'"></app-input>
-      <app-input [label]="'E-mail'" [for]="'Email'" [type]="'email'"></app-input>
-      <app-input [label]="'Senha'" [for]="'Senha'" [type]="'password'"></app-input>
+      <app-input
+        [label]="'Nome'"
+        [for]="'Nome'"
+        [type]="'text'"
+        [(ngModel)]="nome"
+        name="nome"
+      >
+      </app-input>
+      <app-input
+        [label]="'E-mail'"
+        [for]="'Email'"
+        [type]="'email'"
+        [(ngModel)]="email"
+        name="email"
+      >
+      </app-input>
+      <app-input
+        [label]="'Senha'"
+        [for]="'Senha'"
+        [type]="'password'"
+        [(ngModel)]="senha"
+        name="email"
+      >
+      </app-input>
 
-      <button type="button" class="btn btn-dark w-100">Criar Conta</button>
+      <button
+      class="btn btn-dark w-100"
+      type="button"
+      (click)="criarUser()"
+      >
+      Criar Conta
+    </button>
     </form>
 
-    <a class="justify-content-center text-center mt-3 link_styled" [routerLink]="['/login']">
+    <a
+      class="justify-content-center text-center mt-3 link_styled"
+      [routerLink]="['/login']"
+    >
       Cancelar
     </a>
-    
   </div>
 </div>
